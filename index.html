@@ -6,23 +6,23 @@
     <title>What Movies Had These Famous Quotes?</title>
 </head>
 <body>
+    <div id="container">
     <div id="start"> Start Quiz!</div>
-    <div id="quiz" style = "display : none;"></div>
-      <div id="quote"> <p> Quote </p> </div>
-      <div id="timer">
-          <div id="counter"> 6 </div>
-          <div id="backgroundtimegauge"></div>
-          <div id="timegauge"></div>
-          </div>
+    <div id="quiz" style = "display : none;">
+      <div id="quote"></div>
         <div id="choices">
             <div class="choice" id="A" onclick="checkAnswer"('A')">A</div>"
             <div class="choice" id="B" onclick="checkAnswer"('B')">B</div>"
             <div class="choice" id="C" onclick="checkAnswer"('C')">C</div>"
         </div>
-        <div id="progress"> <div class="prog"></div>
+        <div id="timer">
+            <div id="counter"></div>
+            <div id="backgroundtimegauge"></div>
+            <div id="timegauge"></div>
+            </div>
+        <div id="progress"></div>
     </div>
-    <div id="scoreContainer" style = "display : none;">
-        <img src="smile.png"><p>50%</p>
+    <div id="scoreContainer" style = "display : none;"></div>
     </div>
     <script src="./assets/javascript/app.js"></script>
     </body>
