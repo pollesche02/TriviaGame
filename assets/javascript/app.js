@@ -1,16 +1,17 @@
- const start = document.getElementById("start");
- const quiz = document.getElementById("quiz");
- const quote = document.getElementById("quote");
- const timeGauge = document.getElementById("timegauge");
- const choiceA = document.getElementById("A");
- const choiceB = document.getElementById("B");
- const choiceC = document.getElementById("C");
- const progress = document.getElementById("progress");
- const scoreContainer = document.getElementById("scoreContainer");
+ var start = document.getElementById("start");
+ var quiz = document.getElementById("quiz");
+ var quote = document.getElementById("quote");
+ var choiceA = document.getElementById("A");
+ var choiceB = document.getElementById("B");
+ var choiceC = document.getElementById("C");
+ var counter = document.getElementById("counter");
+ var timeGauge = document.getElementById("timeGauge");
+ var progress = document.getElementById("progress");
+ var scoreDiv = document.getElementById("scoreContainer");
 
 // put all my questions inside an array
 
-let quotes = [
+var quote = [
     {
         quote : "Keep the Change, Ya Filthy Animal",
         choiceA : "The GodFather",
@@ -54,20 +55,20 @@ let quotes = [
         correct : "A"
     },
 
-]
+];
 
 
-const lastquote = quote.lenth -1;
-let runningquoteIndex = 0;
-let count = 0;
-const quoteTime = 10;
-const gaugueWidth = 150;
-const gaugeUnit = gaugueWidth / quoteTime;
-let Timer;
-let score = 0;
+var lastQuote = quote.lenth -1;
+var runningquote = 0;
+var count = 0;
+var quoteTime = 10;
+var gaugueWidth = 150;
+var gaugeUnit = gaugueWidth / quoteTime;
+var Timer;
+var score = 0;
 
 function renderQuote(){
-    let q = quote[runningquote];
+    var q = quote[runningquote];
 
     quote.innerHTML = "<p>" + q.quote +"</p>";
     choiceA.innerHTML = q.choiceA;
@@ -83,11 +84,11 @@ function startQuiz(){
     quiz.style.direction = "block";
     renderProgress();
     renderCounter();
-    Timer = setInterval(renderCounter, 1000);
+    Timer = setInterval(renderCounter,1000);
 }
 
-function progressRender(){
-    for(let qIndex = 0; qIndex <= lastquote; qIndex++){
+function renderProgress(){
+    for(var qIndex = 0; qIndex <= lastquote; qIndex++){
         progress.innerHTML += "<div class='prog' id=" + qIndex +"></div>";
     }
 }
@@ -119,8 +120,8 @@ function checkAnswer(answer){
         answerIsWrong(); 
     }
     count = 0;
-    if(runningquote < lastquote){
-        runningquote++;
+    if(runningquote < lastQuote){
+        runningQuote++;
         renderQuote();
     }else{
         clearInterval(Timer);
@@ -140,11 +141,11 @@ function scoreRender() {
     scoreDiv.style.display = "block";
     const scorePerCent = Math.round(100 * score/quote.lenth);
 
-    let img = (scorePerCent >= 80) ? "img" :
-              (scorePerCent >= 60) ? "img" :
-              (scorePerCent >= 40) ? "img" :
-              (scorePerCent >= 20) ? "img" :
+    let img = (scorePerCent >= 80) image1 = new image1("winnerwinner.png")
+              (scorePerCent >= 60) image2 = new image2("Winner.png")
+              (scorePerCent >= 40) image3 = new image3("palm.png")
+              (scorePerCent >= 20) image4 = new image4("mad face.png")
 
     scoreDiv.innerHTML = "<img src="+ img +">";
-    scoreDiv.innerHTML += "<p>" + scorePerCent +"%</p>";
+    scoreDiv.innerHTML += "<p>"+ scorePerCent +"%</p>";
 }
