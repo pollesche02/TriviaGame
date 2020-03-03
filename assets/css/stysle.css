@@ -8,7 +8,7 @@ body{
 
 #container{
     margin: 20px auto;
-    background: url(https://media3.giphy.com/media/kg19fN5BXbZGIDznzG/giphy.webp?cid=790b7611d50ef28e9e48b27c21cb0a219861e4dcdf4c68c5&rid=giphy.webp) no-repeat;
+    background: url(https://media.giphy.com/media/3o6vXTpomeZEyxufGU/giphy.gif) no-repeat;
     background-size: contain;
     background-size: 100%;
     position: absolute;
@@ -34,8 +34,8 @@ body{
 }
 
 #start:hover{
-    border: 3px solid lightslategrey;
-    color: lightslategrey;
+    border: 3px solid purple;
+    color: blue;
 }
 
 #quote{

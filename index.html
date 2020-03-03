@@ -1,32 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <title>What Movies Had These Famous Quotes?</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="./assets/css/stysle.css">
-    <title>What Movies Had These Famous Quotes?</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
-    <div id="container">
-    <div id="start"> Start Quiz!</div>
-    <div id="quiz" style = "display : none;">
-      <div id="quote"></div>
-        <div id="choices">
-            <div class="choice" id="A" onclick="checkAnswer"('A')">A</div>"
-            <div class="choice" id="B" onclick="checkAnswer"('B')">B</div>"
-            <div class="choice" id="C" onclick="checkAnswer"('C')">C</div>"
-        </div>
-        <div id="timer">
-            <div id="counter"></div>
-            <div id="backgroundtimegauge"></div>
-            <div id="timegauge"></div>
-            </div>
-        <div id="progress"></div>
+    <h1>What Movies Had These Famous Quotes?</h1>
+    <div class="wrapper">
+        <div id= "timeleft"></div>
+        <div id= "questionblock"></div>
+        <div id= "answerblock"></div>
+        <button class ="btn btn-success" id ="Start Game"</button> 
+            <br>
+        <button class ="btn btn-success" id ="Play Again"</button>     
+    <div id="scoreContainer" style ="display: none"></div>
     </div>
-    <div id="scoreContainer" style = "display : none;"></div>
-    </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
     <script src="./assets/javascript/app.js"></script>
     </body>
 </html>
