@@ -56,7 +56,7 @@ let questions = [
 let correctRes = 0;
 let wrongRes = 0;
 let shuffledQuestions, currentQuestionIndex
-let counter = questions.length*3
+let counter = questions.length*6
 timerElement.innerText = counter
 
 function countdown(){
@@ -131,6 +131,7 @@ function selectAnswer(e) {
     })
     // if(shuffledQuestions.length > currentQuestionIndex + 1) {
         nextButton.classList.remove('hide')
+        
         
     // } else {
     //     startButton.innerText = 'Restart'
