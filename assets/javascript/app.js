@@ -1,127 +1,166 @@
- var start = document.getElementById("start");
- var quiz = document.getElementById("quiz");
- var question = document.getElementById("quote");
- var choiceA = document.getElementById("A");
- var choiceB = document.getElementById("B");
- var choiceC = document.getElementById("C");
- var counter = document.getElementById("counter");
- var timeGauge = document.getElementById("timeGauge");
- var progress = document.getElementById("progress");
- var scoreDiv = document.getElementById("scoreContainer");
-console.log("progress")
-// put all my questions inside an array
-
-let quote = [
+startButton = document.getElementById('start-btn')
+nextButton = document.getElementById('next-btn')
+questionContainerElement = document.getElementById('question-container')
+questionElement = document.getElementById('question')
+answerButtonsElement = document.getElementById('answer-buttons')
+timerElement = document.getElementById("timer")
+resultsElement = document.getElementById("results")
+let questions = [
     {
-        quote : "Keep the Change, Ya Filthy Animal",
-        choiceA : "The GodFather",
-        choiceB : "Home Alone",
-        choiceC : "GoodFellas",
-        correct : "B"
-    },{
-        quote : "Hasta La Vista, Baby",
-        choiceA : "Terminator 2",
-        choiceB : "Live Free or Die Hard",
-        choiceC : "A Few Good Men",
-        correct : "A"
-    },{
-        quote : "Your Killin Me Smalls",
-        choiceA : "The Sandlot",
-        choiceB : "Home Alone",
-        choiceC : "A Few Good Men",
-        correct : "A"
-    },{
-        quote : "To Infinity and Beyone",
-        choiceA : "District 9",
-        choiceB : "Independence Day",
-        choiceC : "Toy Store",
-        correct : "C"
-    },{
-        quote : "Show Me The Money",
-        choiceA : "The Godfather",
-        choiceB : "Jerry Mcguire",
-        choiceC : "The Usual Suspects",
-        correct : "B"
-    },{
-        quote : "Never hate your enemies. It affects your judgment",
-        choiceA : "The Godfather",
-        choiceB : "GoodFellas",
-        choiceC : "The Usual Suspects",
-        correct : "A"
+        question: '"Keep the change, Ya filthy animal"', 
+        answers: [
+            { text: 'Home Alone', correct: true},
+            { text: 'The God Father', correct: false},
+            { text: 'GoodFellas', correct: false},
+
+        ]
+    },
+    {
+        question: '"Hasta La Vista, Baby"', 
+        answers: [
+            { text: 'Live Free or Die Hard', correct: false},
+            { text: 'Terminator 2', correct: true},
+            { text: 'A Few Good Men', correct: false},
+
+        ]
+    },
+    {
+        question: '"Your Killin Me Smalls"', 
+        answers: [
+            { text: 'The Sandlot', correct: true},
+            { text: 'Home Alone', correct: false},
+            { text: 'A Few Good Men', correct: false},
+
+        ]
+    },
+    {
+        question: '"To Infinity and Beyond"', 
+        answers: [
+            { text: 'Distric 9', correct: false},
+            { text: 'Independence Day', correct: false},
+            { text: 'Toy Story', correct: true},
+
+        ]
+    },
+    {
+        question: '"Show Me The Money', 
+        answers: [
+            { text: 'The God Father', correct: false},
+            { text: 'Jerry Mcquire', correct: true},
+            { text: 'The Usual Suspects', correct: false},
+
+        ]
+    },
+]
+
+let correctRes = 0;
+let wrongRes = 0;
+let shuffledQuestions, currentQuestionIndex
+let counter = questions.length*3
+timerElement.innerText = counter
+
+let timerId = setInterval(countdown,1000)
+
+function countdown(){
+    counter--
+    timerElement.innerText = counter
+    if(counter === 0){
+       
+            showresults()
+
     }
-];
 
-console.log("choice?")
-
-var lastQuote = quote.length -1;
-let runningQuote = 0;
-let count = 0;
-var quoteTime = 10;
-var gaugeWidth = 150;
-var gaugeUnit = gaugeWidth / quoteTime;
-let Timer;
-let score = 0;
-console.log("quote")
-
-function Quote(){
-    let q = quote[runningQuote];
-
-    quote.innerHTML = "<p>" + q.quote +"</p>";
-    choiceA.innerHTML = q.choiceA;
-    choiceB.innerHTML = q.choiceB;
-    choiceC.innerHTML = q.choiceC;
-}
-console.log("quote?")
-
-start.addEventListener("click", start);
-console.log("start")
-
-function Progress(){  
-    for(let qIndex = 0; qIndex <= lastquote; qIndex++){
-        progress.innerHTML += "<div class='prog' id="+ qIndex +"></div>";
-    }
 }
 
-function Counter(){
-    if(count <= quoteTime){
-        counter.innerHTML = count;
-        timeGauge.style.width = count * gaugeUnit + "px";
-        count++
-    }else{
-        count = 0;
-        answerIsWrong(); // this changes to red cause they got the answer wrong
-        if(runningquote < lastquote){
-            runningquote++;
-            Quote();
-        }else{
-            clearInterval(Timer);
-            scoreRender(); // this will show the final score to the person playing the game
+startButton.addEventListener('click', startGame)
+nextButton.addEventListener('click', () => {
+    currentQuestionIndex++
+if (currentQuestionIndex > questions.length -1){  
+    showresults()
+}else{
+    // if end go to showresults
+    setNextQuestion()
+}
+})
+
+function startGame() {
+    startButton.classList.add('hide')
+    shuffledQuestions = questions.sort(() => Math.random() - .5)
+    currentQuestionIndex = 0
+    questionContainerElement.classList.remove('hide')
+    setNextQuestion()
+}
+
+function setNextQuestion() {
+    resetState()
+    showQuestion(shuffledQuestions[currentQuestionIndex])
+}
+
+function showQuestion(question) {
+    questionElement.innerText = question.question
+    question.answers.forEach(answer => {
+        button = document.createElement('button')
+        button.innerText = answer.text
+        button.classList.add('btn')
+        if (answer.correct) {
+            button.dataset.correct = answer.correct
         }
+        button.addEventListener('click', selectAnswer)
+        answerButtonsElement.appendChild(button)
+    })
+}
+
+function resetState() {
+    nextButton.classList.add('hide')
+    while (answerButtonsElement.firstChild) {
+        answerButtonsElement.removeChild(answerButtonsElement.firstChild)
     }
 }
 
-
-function checkAnswer(answer){
-    if( answer == quote[runningquote].correct){
-        score++;
-        document.getElementById(runningquote).style.backgroundColor = "#0f0"; // this is will the person playing got the right answer
-    }else{
-        document.getElementById(runningquote).style.backgroundColor = "#f00"; 
+function selectAnswer(e) {
+    selectedButton = e.target
+    correct = selectedButton.dataset.correct
+    if(correct){
+        correctRes++
     }
-    count = 0;
-    if(runningquote < lastQuote){
-        runningQuote++;
-        Quote();
-    }else{
-        clearInterval(Timer);
-        score(); // this will show the final score again I think.
+    else{
+        wrongRes++
     }
+    setStatusClass(document.body, correct)
+    Array.from(answerButtonsElement.children).forEach(button => {
+        setStatusClass(button, button.dataset.correct)
+    })
+    // if(shuffledQuestions.length > currentQuestionIndex + 1) {
+        nextButton.classList.remove('hide')
+        
+    // } else {
+    //     startButton.innerText = 'Restart'
+    //     startButton.classList.remove('hide')
+    // }
+}
 
-function scoreDiv() {
-    scoreDiv.style.display = "block";
-    const scorePerCent = Math.round(100 * score/quote.length);
+function setStatusClass(element, correct) {
+    clearStatusClass(element)
+    if (correct) {
+        element.classList.add('correct')
+       
+    } else {
+        element.classList.add('wrong')
+    
+    }
+}
+function clearStatusClass(element) {
+    element.classList.remove('correct')
+    element.classList.remove('wrong')
+}
 
-    scoreDiv.innerHTML = "<img src="+ winnerwinner +">";
-    scoreDiv.innerHTML += "<p>" +scorePerCent +"%</p>";
-}}
-console.log("running?")
+function showresults() {
+    clearInterval(timerId)
+    questionContainerElement.classList.add('hide')
+    nextButton.classList.add('hide')
+    resultsElement.classList.remove('hide')
+    document.getElementById("correct").innerText = correctRes
+    document.getElementById("wrong").innerText = wrongRes
+    document.getElementById("unanswered").innerText = questions.length - correctRes -  wrongRes
+    
+}

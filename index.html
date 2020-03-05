@@ -1,22 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="./assets/css/stysle.css" rel="stylesheet" />
+    <script defer src="assets/javascript/app.js"></script>
     <title>What Movies Had These Famous Quotes?</title>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="./assets/css/stysle.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-</head>
-<body>
-    <h1>What Movies Had These Famous Quotes?</h1>
-    <div class="wrapper">
-        <div id= "timeleft"></div>
-        <div id= "questionblock"></div>
-        <div id= "answerblock"></div>
-        <button class ="btn btn-success" id ="Start Game"</button> 
-            <br>
-        <button class ="btn btn-success" id ="Play Again"</button>     
-    <div id="scoreContainer" style ="display: none"></div>
-    </div>
-    <script src="./assets/javascript/app.js"></script>
-    </body>
+  </head>
+  <body>
+      
+    <div class="container">
+        <h1>What Movies Had These Famous Quotes?</h1>
+      <div id="question-container" class="hide">
+        <h2>Timer: <span id="timer"></span></h2>
+        <div id="question">Question</div>
+        <div id="answer-buttons" class="btn-grid">
+          <button class="btn">Answer 1</button>
+          <button class="btn">Answer 2</button>
+          <button class="btn">Answer 3</button>
+        </div>
+      </div>
+      <div class="controls">
+        <button id="start-btn" class="start-btn btn">Start</button>
+        <button id="next-btn" class="next-btn btn hide">Next</button>
+      </div>
+      <div id="results" class="hide">
+        <h2>Correct: <span id="correct"></span></h2>
+        <h2>Wrong: <span id="wrong"></span></h2>
+        <h2>Unanswered: <span id="unanswered"></span></h2>
+      </div>
+  </body>
 </html>

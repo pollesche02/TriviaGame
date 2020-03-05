@@ -1,138 +1,92 @@
-body{
-    margin: 0 auto;
-    padding: 1em;
-    color: white;
-    font-size: 20px;
+*, *::before, *::after {
+    box-sizing: border-box;
     font-family: cursive;
 }
 
-#container{
-    margin: 20px auto;
-    background: url(https://media.giphy.com/media/3o6vXTpomeZEyxufGU/giphy.gif) no-repeat;
-    background-size: contain;
-    background-size: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 100;
+:root {
+    --hue-neutral: 200;
+    --hue-wrong: 0;
+    --hue-correct: 145;
 }
 
-#start{
-    font-size: 1.5em;
-    font-weight: bold;
-    word-break: break-all;
-    width: 100px;
-    height: 150px;
-    text-align: center;
-    cursor: pointer;
-    position: absolute;
-    left: 300px;
-    top: 50px;
-    color: lightgrey;
+body {
+    --hue: var(--hue-neutral);
+    padding: 0;
+    margin: 0;
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background: url(https://media.giphy.com/media/QBd4CtFJqXao51JZ41/giphy.gif)
 }
 
-#start:hover{
-    border: 3px solid purple;
-    color: blue;
-}
-
-#quote{
-    width: 500px;
-    height: 125px;
-    position: absolute;
-    right: 0;
-    top: 0;
-}
-
-#choices{
-    width: 480px;
-    position: absolute;
-    right: 0;
-    top: 125px;
-    padding: 10px;
-}
-
-.choice{
-    display: inline-block;
-    width: 135px;
-    text-align: center;
-    border: 1px solid grey;
-    border-radius: 5px;
-    cursor: pointer;
-    padding: 5px;
-}
-.choice:hover{
-    border : 2px solid grey;
-    font-weight: bold;
-}
-
-#timer{
-    position: absolute;
-    height : 100px;
-    width : 200px;
-    bottom : 0px;
-    text-align: center;
-}
-#counter{
-    font-size: 3em;
-}
-#btimeGauge{
-    width : 150px;
-    height : 10px;
-    border-radius: 10px;
-    background-color: lightgray;
-    margin-left : 25px;
-}
-#timeGauge{
-    height : 10px;
-    border-radius: 10px;
-    background-color: mediumseagreen;
-    margin-top : -10px;
-    margin-left : 25px;
-}
-#progress{
-    width : 500px;
-    position: absolute;
-    bottom : 0px;
-    right : 0px;
-    padding:5px;
-    text-align: right;
-}
-.prog{
-    width : 25px;
-    height : 25px;
-    border: 1px solid #000;
-    display: inline-block;
-    border-radius: 50%;
-    margin-left : 5px;
-    margin-right : 5px;
-}
-#scoreContainer{
-    margin : 20px auto;
+.container {
+    width: 800px;
+    max-width: 80%;
     background-color: white;
-    opacity: 0.8;
-    height: 300px;
-    width : 700px;
     border-radius: 5px;
-    box-shadow: 0px 5px 15px 0px;
-    position: relative;
+    padding: 10px;
+    box-shadow: 0 0 10px 2px;
+}
+
+.btn-grid {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.btn {
+    --hue: var(--hue-neutral);
+    border: 1px solid hsl(var(--hue), 100%, 30%);
+    background-color: hsl(var(--hue), 100%, 50%);
+    border-radius: 5px;
+    padding: 20px 20px;
+    color: black;
+    font-weight: bolder;
+    font-size: 20px;
+    outline: none;
+}
+
+.btn:hover {
+    border-color: green;
+    border-radius: 20px;
+    outline-width: 30px;
+}
+
+.btn.correct {
+    --hue: var(--hue-correct);
+    color: black;
+}
+
+.btn.wrong {
+    --hue: var(--hue-wrong);
+}
+
+.start-btn, .next-btn {
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 10px 20px;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hide {
     display: none;
 }
-#scoreContainer img{
-    position: absolute;
-    top:100px;
-    left:325px;
-}
-#scoreContainer p{
-    position: absolute;
-    display: block;
-    width : 59px;
-    height :59px;
-    top:130px;
-    left:325px;
-    font-size: 1.5em;
-    font-weight: bold;
+
+h1, h2 {
     text-align: center;
+}
+
+#question {
+    text-align: center;
+    font-weight: bold;
+    font-size: 35px;
+    color: green;
 }
