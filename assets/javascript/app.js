@@ -59,8 +59,6 @@ let shuffledQuestions, currentQuestionIndex
 let counter = questions.length*3
 timerElement.innerText = counter
 
-let timerId = setInterval(countdown,1000)
-
 function countdown(){
     counter--
     timerElement.innerText = counter
@@ -84,6 +82,7 @@ if (currentQuestionIndex > questions.length -1){
 })
 
 function startGame() {
+    timerId = setInterval(countdown, 1000)
     startButton.classList.add('hide')
     shuffledQuestions = questions.sort(() => Math.random() - .5)
     currentQuestionIndex = 0
