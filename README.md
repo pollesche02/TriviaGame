@@ -1,1 +1,3 @@
-# TriviaGame
+# TriviaGame - Can you guess the famous quotes from some great past movies.. Simply times yourself and start guessing... 
+
+# https://pollesche02.github.io/TriviaGame/
